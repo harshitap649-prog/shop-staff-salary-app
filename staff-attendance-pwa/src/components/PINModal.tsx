@@ -39,12 +39,6 @@ export function PINModal({ isOpen, onClose, onSuccess, title, description }: PIN
     onClose();
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (/^\d$/.test(e.key)) handleDigit(e.key);
-    else if (e.key === "Backspace") handleBackspace();
-    else if (e.key === "Enter") handleSubmit(e as unknown as React.FormEvent);
-  };
-
   return (
     <>
       <div

@@ -1,7 +1,9 @@
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
+  setDoc,
   updateDoc,
   deleteDoc,
   query,
@@ -29,7 +31,7 @@ const COLLECTIONS = {
 
 export async function createOwnerProfile(uid: string, data: Omit<ShopOwner, "uid" | "createdAt" | "updatedAt">) {
   const ref = doc(db, COLLECTIONS.owners, uid);
-  await updateDoc(ref, {
+  await setDoc(ref, {
     ...data,
     uid,
     createdAt: new Date().toISOString(),
@@ -44,8 +46,8 @@ export async function updateOwnerProfileInDb(uid: string, data: Partial<ShopOwne
 
 export async function getOwnerProfileById(uid: string): Promise<ShopOwner | null> {
   const ref = doc(db, COLLECTIONS.owners, uid);
-  const snap = await getDocs(query(collection(db, COLLECTIONS.owners)));
-  return null;
+  const snap = await getDoc(ref);
+  return snap.exists() ? (snap.data() as ShopOwner) : null;
 }
 
 export async function addStaffMember(data: Omit<StaffMember, "id" | "createdAt" | "updatedAt">) {

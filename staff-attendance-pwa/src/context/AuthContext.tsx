@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import type { AuthFormData } from "@/types";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -12,8 +13,8 @@ import {
   createOwnerProfile,
   getOwnerProfileById,
   updateOwnerProfileInDb,
-  type ShopOwner,
 } from "@/lib/firestore";
+import type { ShopOwner } from "@/types";
 
 type AuthContextType = {
   user: User | null;
@@ -59,7 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => unsub();
   }, []);
 
-  const signUp = useCallback(async (data) => {
+  const signUp = useCallback(async (data: AuthFormData) => {
     const cred = await createUserWithEmailAndPassword(auth, data.email, data.password);
     await updateProfile(cred.user, { displayName: data.ownerName });
     const ownerData: Omit<ShopOwner, "uid" | "createdAt" | "updatedAt"> = {
@@ -81,17 +82,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await signOut(auth);
   }, []);
 
-  const updateOwnerProfile = useCallback(async (data: Partial<ShopOwner>) => {
-    if (!user) return;
-    await updateOwnerProfileInDb(user.uid, data);
-    await refetchOwner();
-  }, [user, refetchOwner]);
-
   const refetchOwner = useCallback(async () => {
     if (!user) return;
     const prof = await getOwnerProfileById(user.uid);
     setOwner(prof ?? null);
   }, [user]);
+
+  const updateOwnerProfile = useCallback(async (data: Partial<ShopOwner>) => {
+    if (!user) return;
+    await updateOwnerProfileInDb(user.uid, data);
+    await refetchOwner();
+  }, [user, refetchOwner]);
 
   const value = {
     user,

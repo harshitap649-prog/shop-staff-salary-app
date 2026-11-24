@@ -1,20 +1,34 @@
-import { clsx, type ClassValue } from "clsx";
-import { tailwindMerge } from "tailwind-merge";
 import {
   parseISO,
   format,
   startOfMonth,
   endOfMonth,
   subMonths,
-  isWithinInterval,
   differenceInCalendarDays,
-  eachDayOfInterval,
-  addMonths,
 } from "date-fns";
 import type { AttendanceRecord, StaffMember, SalaryChange, MonthlySummary } from "@/types";
 
-export function cn(...inputs: ClassValue[]) {
-  return tailwindMerge(clsx(inputs));
+type ClassValue =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | ClassValue[];
+
+export function cn(...inputs: ClassValue[]): string {
+  const parts: string[] = [];
+  const flatten = (items: ClassValue[]) => {
+    for (const item of items) {
+      if (Array.isArray(item)) {
+        flatten(item);
+      } else if (item != null && item !== false && item !== "") {
+        parts.push(String(item));
+      }
+    }
+  };
+  flatten(inputs);
+  return parts.join(" ");
 }
 
 export function formatDate(dateStr: string, fmt = "dd MMM yyyy"): string {

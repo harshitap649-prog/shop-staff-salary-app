@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { Mail, Lock, MobilePhone, Building, ArrowRight } from "lucide-react";
+import { Mail, Lock, ArrowRight, AlertCircle } from "lucide-react";
 import logoSrc from "@/assets/logo.svg";
 
 export function LoginPage() {
@@ -31,7 +31,7 @@ export function LoginPage() {
             alt="Shop Logo"
             className="mx-auto w-16 h-16 rounded-xl object-cover bg-white border border-slate-200 shadow-sm"
             onError={(e) => {
-              e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2310b981' rx='10'/%3E%3Ctext x='20' y='27' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E";
+              e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2310b981' rx='10'/%3E%3Ctext x='20' y='27' font-family='Arial' font-size='18' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E";
             }}
           />
           <h2 className="mt-4 text-2xl font-bold text-slate-900">Staff Attendance</h2>
@@ -71,8 +71,8 @@ export function LoginPage() {
             </div>
 
             {error && (
-              <div className="rounded-lg p-3 bg-danger-50 border border-danger-100 text-danger-700 text-sm flex items-center gap-2">
-                <Building className="w-4 h-4" /> {error}
+              <div className="rounded-lg p-3 bg-red-50 border-red-100 text-red-700 text-sm flex items-center gap-2">
+                <AlertCircle className="w-4 h-4" /> {error}
               </div>
             )}
 

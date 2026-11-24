@@ -1,0 +1,7 @@
+
+> staff-attendance-pwa@0.0.0 build
+> tsc -b && vite build
+
+src/pages/AttendancePage.tsx(82,3): error TS1135: Argument expression expected.
+src/pages/AttendancePage.tsx(82,4): error TS1128: Declaration or statement expected.
+src/pages/AttendancePage.tsx(82,18): error TS1005: ';' expected.
