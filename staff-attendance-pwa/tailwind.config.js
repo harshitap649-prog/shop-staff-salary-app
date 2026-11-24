@@ -10,15 +10,15 @@ export default {
         brand: {
           50: '#f0fdfa',
           100: '#ccfbf1',
-          500: '#10b981',   // emerald - present/paid
+          500: '#10b981',
           600: '#059669',
         },
         danger: {
-          500: '#ef4444',   // red - absent/deductions
+          500: '#ef4444',
           600: '#dc2626',
         },
         warn: {
-          500: '#f59e0b',   // amber - half-day/pending
+          500: '#f59e0b',
           600: '#d97706',
         },
         slate: {

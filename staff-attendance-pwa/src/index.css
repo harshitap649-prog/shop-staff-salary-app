@@ -113,20 +113,3 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
-
-@theme {
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-danger-500: #ef4444;
-  --color-danger-600: #dc2626;
-  --color-warn-500: #f59e0b;
-  --color-warn-600: #d97706;
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-900: #0f172a;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
-}
